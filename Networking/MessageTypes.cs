@@ -8,6 +8,8 @@ namespace GridTransporter.Networking
 {
     public enum MessageType
     {
-        GridTransport
+        GridTransport,
+        ChatMessage
+
     }
 }

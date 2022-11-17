@@ -15,15 +15,11 @@ namespace GridTransporter.Networking
         private WatsonTcpClient ClientTCP;
         private bool _Setup = false;
 
-
-
         public int ServerID { get; set; }
-
-
-
 
         public string ServerName { get; set; }
         public string ServerIP { get; set; }
+        public string ClientIP { get; set; }
         public string GamePort { get; set; }
 
         private short _GamePort = 0;

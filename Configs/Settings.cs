@@ -13,9 +13,15 @@ namespace GridTransporter.Configs
 {
     public class Settings : ViewModel
     {
+        private string _ServerName = "";
+        public string ServerName { get => _ServerName; set => SetValue(ref _ServerName, value); }
 
         private bool _EnablePlugin = true;
         public bool EnablePlugin { get => _EnablePlugin; set => SetValue(ref _EnablePlugin, value); }
+
+
+        private bool _ChatRelay = true;
+        public bool ChatRelay { get => _ChatRelay; set => SetValue(ref _ChatRelay, value); }
 
 
         private int _ThisServerID = 1;
@@ -36,7 +42,6 @@ namespace GridTransporter.Configs
         public ObservableCollection<TargetClient> ServerDestinations { get => _ServerDestinations; set => SetValue(ref _ServerDestinations, value); }
 
 
-
         private ObservableCollection<JumpRegion> _JumpRegionGrid = new ObservableCollection<JumpRegion>();
         public ObservableCollection<JumpRegion> JumpRegionGrid { get => _JumpRegionGrid; set => SetValue(ref _JumpRegionGrid, value); }
 
@@ -49,7 +54,6 @@ namespace GridTransporter.Configs
 
         public int ServerID { get; set; }
 
-
         [XmlIgnoreAttribute]
         public TargetClient Client { get; set; }
 
@@ -59,7 +63,7 @@ namespace GridTransporter.Configs
         public double Y { get; set; } = 0;
         public double Z { get; set; } = 0;
 
-        public double Radius { get; set; } = .5;
+        public double Radius { get; set; } = 0;
 
         public string ScriptName { get; set; }
 
@@ -69,10 +73,9 @@ namespace GridTransporter.Configs
         public double ToY { get; set; } = 0;
         public double ToZ { get; set; } = 0;
 
+        public int ClusterID;
 
-
-       
-
+        public int ServerNumber;
 
     }
 

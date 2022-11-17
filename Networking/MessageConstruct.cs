@@ -1,4 +1,5 @@
-﻿using GridTransporter.BoundrySystem;
+﻿using GridTransporter.Networking;
+using GridTransporter.BoundrySystem;
 using NLog;
 using ProtoBuf;
 using Sandbox;
@@ -8,6 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sandbox.Game;
+
+
 
 namespace GridTransporter.Networking
 {
@@ -29,9 +33,7 @@ namespace GridTransporter.Networking
         private readonly byte[] Data;
 
         public DateTime Timer;
-
-
-        
+                
         public MessageConstruct(MessageType Type, byte[] Data)
         {
             this.Type = Type;
@@ -57,6 +59,31 @@ namespace GridTransporter.Networking
                     await Transport.SpawnAsync();
                     break;
 
+                case MessageType.ChatMessage:
+
+                    string msgData = Encoding.UTF8.GetString(Data);
+
+                    long mailID = long.Parse(msgData.Remove(msgData.IndexOf('╥')));
+
+                    if (ModMessage.readMsgs.Contains(mailID))
+                        break;
+
+                    ModMessage.readMsgs.Add(mailID);
+
+                    ModMessage.SendChatMessageToAll(msgData);
+
+                    if (!Main.Config.ChatRelay)
+                        break;
+
+                    msgData = msgData.Substring(msgData.IndexOf('╥')+1);
+
+                    string Name = msgData.Remove(msgData.IndexOf(':'));
+                    string msg = msgData.Substring(msgData.IndexOf(':') + 1);
+
+                    Main.chatMngr.SendMessageAsOther(Name, msg);
+                    //MyVisualScriptLogicProvider.SendChatMessage(msg,Name);
+
+                    break;
 
                 default:
                     Log.Info("Unkown message type!");
@@ -67,11 +94,11 @@ namespace GridTransporter.Networking
         }
     }
 
-
     public class MessageQueue
     {
 
 
 
     }
+
 }

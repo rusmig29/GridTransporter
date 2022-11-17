@@ -143,7 +143,6 @@ namespace GridTransporter.Networking
                 MessageConstruct Construct = Utilities.NetworkUtility.Deserialize<MessageConstruct>(Data);
                 await Construct.Decompile();
 
-
                 //Log.Info(Construct.Type);
 
             }catch(Exception ex)

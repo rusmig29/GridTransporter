@@ -42,6 +42,7 @@ namespace GridTransporter.UI
             TargetClient NewClient = new TargetClient();
             NewClient.ServerName = "NewServer";
             NewClient.ServerIP = "127.0.0.1";
+            NewClient.ClientIP = "127.0.0.1";
             NewClient.GamePort = "27016";
             NewClient.GridTransportPort = "3000";
             NewClient.ServerPassword = "OoogaBooga";
@@ -72,5 +73,6 @@ namespace GridTransporter.UI
         {
             Configs.RefreshModel();
         }
+     
     }
 }

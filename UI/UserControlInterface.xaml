@@ -4,13 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GridTransporter.UI"
-             mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="575">
+             mc:Ignorable="d" d:DesignWidth="575" Height="676.6">
 
     <UserControl.Resources>
         <CollectionViewSource x:Key="ServerSource" Source="{Binding ServerDestinations}" />
     </UserControl.Resources>
-    
+
 
     <Grid>
 
@@ -24,7 +23,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.Row ="0" VerticalAlignment="Top" Text="ServerGate Network" FontWeight="Bold" FontSize="16" Margin="3"/>
+        <TextBlock Grid.Column="0" Grid.Row ="0" VerticalAlignment="Top" Text="GridTransporter Plugin" FontWeight="Bold" FontSize="16" Margin="3"/>
         <TextBlock Grid.Column="1" Grid.Row ="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontStyle="Italic" Text="(A kinda simple jump plugin)" FontSize="12" Margin="3"/>
 
 
@@ -55,6 +54,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+
+
                 <TextBlock Text="Enable Plugin: " Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
                 <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding EnablePlugin}" Margin="3"/>
 
@@ -62,7 +63,9 @@
                 <!-- sadasdf ThisServerID-->
 
 
-
+                <TextBlock Text="Server Name: " Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"  Margin="3"/>
+                <TextBlock Text="(Server name for chat messages Keep it short!!)" Grid.Row="2" Grid.Column="2" Margin="3"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding ServerName}"/>
 
                 <TextBlock Text="Listener Port: " Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"  Margin="3"/>
                 <TextBlock Text="(Port on which this server listens for messages)" Grid.Row="3" Grid.Column="2" Margin="3"/>
@@ -72,24 +75,20 @@
                 <TextBlock Text="(useful for gamepanels w/out firewall configs)" Grid.Row="4" Grid.Column="2" Margin="3"/>
                 <TextBox Grid.Row="4" Grid.Column="1" Margin="3" Text="{Binding Password}"/>
 
-
-
-
                 <Button Grid.Column="0" Grid.Row="5" Margin="3" Click="AddNewServerClick">Add New Server</Button>
                 <Button Grid.Column="1" Grid.Row="5" Margin="3" Click="AddNewRegionClick">Add New Region</Button>
-                
-                
 
                 <DockPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="6">
                     <Label DockPanel.Dock="Left" Content="Server Destinations:"/>
-                    
+
                     <Separator/>
                 </DockPanel>
-                
-                <DataGrid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7" ItemsSource="{Binding ServerDestinations}" AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserAddRows = "False" LostFocus="DataGrid_LostFocus">
+
+                <DataGrid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="6" ItemsSource="{Binding ServerDestinations}" AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserAddRows = "False" LostFocus="DataGrid_LostFocus" Margin="0,25.4,0.2,0.2" Grid.RowSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ServerName" Width="120" Binding="{Binding Path=ServerName, Mode=TwoWay}" IsReadOnly="False" />
-                        <DataGridTextColumn Header="TargetIP"  Width="160" Binding="{Binding Path=ServerIP, Mode=TwoWay}" IsReadOnly="False" />
+                        <DataGridTextColumn Header="TargetIP"  Width="100" Binding="{Binding Path=ServerIP, Mode=TwoWay}" IsReadOnly="False" />
+                        <DataGridTextColumn Header="ClientIP"  Width="100" Binding="{Binding Path=ClientIP, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="GamePort" Binding="{Binding Path=GamePort, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="ListenerPort" Binding="{Binding Path=GridTransportPort, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="Password" Width="*"  Binding="{Binding Path=ServerPassword, Mode=TwoWay}" IsReadOnly="False" />
@@ -104,7 +103,7 @@
 
 
 
-                <DataGrid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="9" ItemsSource="{Binding JumpRegionGrid}" AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserAddRows = "False" LostFocus="DataGrid_LostFocus">
+                <DataGrid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="9" ItemsSource="{Binding JumpRegionGrid}" AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserAddRows = "False" LostFocus="DataGrid_LostFocus" RenderTransformOrigin="0.501,0.637" Margin="0,0.2,0.2,-0.4">
                     <DataGrid.Columns>
                         <DataGridComboBoxColumn Width="90" Header="Server" ItemsSource="{Binding Source={StaticResource ServerSource}}" SelectedValueBinding="{Binding Path=ServerID}" SelectedValuePath="ServerID" DisplayMemberPath="ServerName"/>
                         <DataGridTextColumn Header="Region Name" Binding="{Binding Path=Name, Mode=TwoWay}" IsReadOnly="False" />
@@ -113,12 +112,16 @@
                         <DataGridTextColumn Header="Z" Binding="{Binding Path=Z, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="Radius(KM)" Binding="{Binding Path=Radius, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="ToX" Binding="{Binding Path=ToX, Mode=TwoWay}" IsReadOnly="False" />
-                        <DataGridTextColumn Header="ToY" Binding="{Binding Path=ToY, Mode=TwoWay}" IsReadOnly="False" /> 
+                        <DataGridTextColumn Header="ToY" Binding="{Binding Path=ToY, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="ToZ" Binding="{Binding Path=ToZ, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="Timer" Binding="{Binding Path=Timer, Mode=TwoWay}" IsReadOnly="False" />
+                        <DataGridTextColumn Header="ClusterID" Binding="{Binding Path=ClusterID, Mode=TwoWay}" IsReadOnly="False" />
+                        <DataGridTextColumn Header="Server#" Binding="{Binding Path=ServerNumber, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="ScriptName" Binding="{Binding Path=ScriptName, Mode=TwoWay}" IsReadOnly="False" />
                     </DataGrid.Columns>
                 </DataGrid>
+                <TextBlock Text="Chat Relay: " Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="3,2,150.2,2"/>
+                <CheckBox Grid.Row="0" Grid.Column="2" IsChecked="{Binding ChatRelay}" Margin="136,3,3.2,3"/>
 
 
 
