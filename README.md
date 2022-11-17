@@ -1,4 +1,7 @@
-# GridTransporter
+# GridTransporter Dev branch
+
+This is a development version. It can be buggy and can potentionally cause crashes
+
 Free to use Server -> Server grid transport plugin that auto creates player identities on transfer
 
 This is a free to use space engineers server to server grid transfer plugin over networking. No shared folders.
