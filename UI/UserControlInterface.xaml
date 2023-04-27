@@ -90,6 +90,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ServerName" Width="120" Binding="{Binding Path=ServerName, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="TargetIP"  Width="160" Binding="{Binding Path=ServerIP, Mode=TwoWay}" IsReadOnly="False" />
+                        <DataGridTextColumn Header="ClientIP"  Width="100" Binding="{Binding Path=ClientIP, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="GamePort" Binding="{Binding Path=GamePort, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="ListenerPort" Binding="{Binding Path=GridTransportPort, Mode=TwoWay}" IsReadOnly="False" />
                         <DataGridTextColumn Header="Password" Width="*"  Binding="{Binding Path=ServerPassword, Mode=TwoWay}" IsReadOnly="False" />

@@ -66,7 +66,7 @@ namespace GridTransporter.BoundrySystem
         public GridTransport(List<MyCubeGrid> gridGroups, JumpRegion Target, int GamePort)
         {
             SpawnPosition = new Vector3D(Target.X);
-            PlayerDirectIP = Target.Client.ServerIP + ":" + GamePort;
+            PlayerDirectIP = Target.Client.ClientIP + ":" + GamePort;
             this.Target = Target;
             PrepareGrids(gridGroups);
         }

@@ -24,6 +24,7 @@ namespace GridTransporter.Networking
 
         public string ServerName { get; set; }
         public string ServerIP { get; set; }
+        public string ClientIP { get; set; }
         public string GamePort { get; set; }
 
         private short _GamePort = 0;
